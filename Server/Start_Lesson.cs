@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Server
@@ -17,15 +18,15 @@ namespace Server
                 listBox1.Items.Add(VARIABLE);
             }
         }
-        private void button1_Click(object sender, EventArgs e)
+        private async void button1_Click(object sender, EventArgs e)
         {
             SqlWork sqlWork = new SqlWork();
             string tableName = listBox1.SelectedItem.ToString();
-            string json = SqlWork.GetTableDataAsJson(sqlWork.StringSqlConn, tableName);
+            string json = SqlWork.GetTableDataAsJson(sqlWork.StringSqlConn, tableName); 
             MessageBox.Show(json);
+            Clipboard.SetText(json);
             MyTcpServer server = new MyTcpServer();
-            Thread thread = new Thread(()=>server.Start_server(json));
-            thread.Start();
+            await Task.Run(() => server.Start_server(json));
         }
     }
 }

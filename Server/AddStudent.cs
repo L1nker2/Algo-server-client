@@ -34,6 +34,10 @@ namespace Server
             dataGridView1.Columns["st_SecName"].HeaderText = "Фамилия";
             dataGridView1.Columns["st_Login"].HeaderText = "Логин";
             dataGridView1.Columns["st_Pass"].HeaderText = "Пароль";
+            dataGridView1.ReadOnly = true;
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.RowHeadersVisible = false;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -49,26 +53,32 @@ namespace Server
         }
 
         private void button3_Click(object sender, EventArgs e)
-        {            
-            string sqlstr = new SqlWork().StringSqlConn;
-            SqlConnection connection = new SqlConnection(sqlstr);
-            string sqlCommand = "SELECT * FROM " + comboBox1.SelectedItem.ToString();
+        {
+            string st_Name = textBox1.Text;
+            string st_SecName = textBox2.Text;
+            string st_Login = textBox3.Text;
+            string st_Pass = textBox4.Text;
+            string GroupName = comboBox1.SelectedItem.ToString();
+            DataGridViewRow row = dataGridView1.SelectedRows[0];
+            string st_id = row.Cells["st_id"].Value.ToString();
+            
+            string sqlStr = new SqlWork().StringSqlConn;
+            string sqlCommand = "UPDATE " + GroupName + " SET st_Name = '" + st_Name + "', st_SecName = '" + st_SecName +
+                                "', st_Login = '" + st_Login + "', st_Pass = '" + st_Pass + "' WHERE st_id = " + st_id;
+            
+            SqlConnection connection = new SqlConnection(sqlStr);
             SqlCommand command = new SqlCommand(sqlCommand, connection);
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            DataTable table = new DataTable();
-            adapter.Fill(table);
-            dataGridView1.DataSource = table;
-            if (dataGridView1.SelectedRows.Count != 0)
+            connection.Open();
+            int rowAffected = command.ExecuteNonQuery();
+            if (rowAffected > 0)
             {
-                DataGridViewRow row = dataGridView1.SelectedRows[0];
-                row.Cells["st_Name"].Value = textBox1.Text;
-                row.Cells["st_SecName"].Value = textBox2.Text;
-                row.Cells["st_Login"].Value = textBox3.Text;
-                row.Cells["st_Pass"].Value = textBox4.Text;
+                MessageBox.Show("Data updated successfully.");
             }
-            dataGridView1.EndEdit();
-            adapter.Update(table);
-            MessageBox.Show("okey");
+            else
+            {
+                MessageBox.Show("Failed to update data.");
+            }
+            Loaddata();
             textBox1.Text = "";
             textBox2.Text = "";
             textBox3.Text = "";

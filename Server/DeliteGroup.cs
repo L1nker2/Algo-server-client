@@ -16,13 +16,11 @@ namespace Server
                 listBox1.Items.Add(VARIABLE);
             }
         }
-
-
         private void button1_Click(object sender, EventArgs e)
         {
             SqlWork sqlWork = new SqlWork();
             string GroupName = listBox1.SelectedItem.ToString();
-            SqlWork.DeliteTable(sqlWork.StringSqlConn, GroupName);
+            SqlWork.DeleteTable(sqlWork.StringSqlConn, GroupName);
             this.Close();
         }
     }

@@ -1,0 +1,14 @@
+C:\Users\user\Project\Client\bin\Release\Client.exe.config
+C:\Users\user\Project\Client\bin\Release\Client.exe
+C:\Users\user\Project\Client\bin\Release\Client.pdb
+C:\Users\user\Project\Client\bin\Release\Newtonsoft.Json.dll
+C:\Users\user\Project\Client\bin\Release\Newtonsoft.Json.xml
+C:\Users\user\Project\Client\obj\Release\Client.csproj.AssemblyReference.cache
+C:\Users\user\Project\Client\obj\Release\Client.csproj.SuggestedBindingRedirects.cache
+C:\Users\user\Project\Client\obj\Release\Client.Student.resources
+C:\Users\user\Project\Client\obj\Release\Client.Properties.Resources.resources
+C:\Users\user\Project\Client\obj\Release\Client.csproj.GenerateResource.cache
+C:\Users\user\Project\Client\obj\Release\Client.csproj.CoreCompileInputs.cache
+C:\Users\user\Project\Client\obj\Release\Client.csproj.CopyComplete
+C:\Users\user\Project\Client\obj\Release\Client.exe
+C:\Users\user\Project\Client\obj\Release\Client.pdb
